@@ -19,6 +19,12 @@ public class Lobby {
 		this.players = new ArrayList<Player>();
 	}
 	
+	public void broadcastMessage(String message) {
+		for (Player player : this.getPlayers()) {
+			player.sendMessage(message);
+		}
+	}
+	
 	public void addPlayer(Player player) {
 		if (!(this.getPlayers().contains(player))) {
 			this.getPlayers().add(player);
