@@ -1,0 +1,9 @@
+name: ServerSystem
+version: 1.0.0
+description: Simple server system by Marcel Teders
+
+author: Marcel Teders
+website: https://marcel-teders.de/serversystem
+
+main: me.marcel.serversystem.Main
+api-version: 1.14
