@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.marcel.serversystem.commands.CommandManager;
 import me.marcel.serversystem.event.EventManager;
 import me.marcel.serversystem.lobby.Lobby;
 import me.marcel.serversystem.lobby.LobbyManager;
@@ -31,6 +32,8 @@ public class Main extends JavaPlugin implements Listener {
 	// Events
 	private EventManager eventManager;
 	
+	private CommandManager commandManager;
+	
 	@Override
 	public void onLoad() {
 		this.init();
@@ -46,6 +49,8 @@ public class Main extends JavaPlugin implements Listener {
 		this.getLobbyManager().loadLobbies();
 		this.getEventManager().registerEvent(this);
 		
+		//Command
+		
 		this.getConsoleLogger().log("Das Plugin wurde aktiviert!");
 	}
 	
@@ -55,7 +60,7 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	private void init() {
-		this.consoleLogger = new ConsoleLogger("§8[§aServerSystem§8]", LogType.INFO);
+		this.consoleLogger = new ConsoleLogger("Â§8[Â§aServerSystemÂ§8]", LogType.INFO);
 		
 		// Konfigurationsdateien initialisieren
 		this.settingsConfig = new Config(new ConfigManager("settings.yml"));
@@ -66,6 +71,9 @@ public class Main extends JavaPlugin implements Listener {
 		
 		// Events
 		this.eventManager = new EventManager(this);
+		
+		// Commands 
+		this.commandManager = new CommandManager(this);
 	}
 	
 	public ConsoleLogger getConsoleLogger() {
@@ -86,6 +94,10 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public EventManager getEventManager() {
 		return this.eventManager;
+	}
+	
+	public CommandManager getCommandManager() {
+		return this.commandManager;
 	}
 	
 	@EventHandler
